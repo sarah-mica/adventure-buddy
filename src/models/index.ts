@@ -1,6 +1,10 @@
 import { Sequelize, SequelizeOptions } from "sequelize-typescript";
 import { UserModel } from "./user.js";
 import { Dialect } from "sequelize";
+import { DayModel } from "./day.js";
+import { ParticipantModel } from "./participant.js";
+import { StopModel } from "./stop.js";
+import { TripModel } from "./trip.js";
 
 export interface IDBConfig extends SequelizeOptions {
     dialect: Dialect;
@@ -14,7 +18,7 @@ export const initModels = async (opts: IDBConfig): Promise<Sequelize> => {
 
     const sequelizeInstance = new Sequelize(newOpts);
 
-    sequelizeInstance.addModels([UserModel]);
+    sequelizeInstance.addModels([UserModel, TripModel, ParticipantModel, DayModel, StopModel]);
 
     if (opts.dialect === "sqlite") {
         await sequelizeInstance.sync();

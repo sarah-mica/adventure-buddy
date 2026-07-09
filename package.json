@@ -12,7 +12,7 @@
     "db:migrate": "npx sequelize-cli db:migrate --debug",
     "db:migrate:undo": "npx sequelize-cli db:migrate:undo --debug",
     "db:migrate:undo:all": "npx sequelize-cli db:migrate:undo:all --debug",
-    "db:migration:generate": "sequelize migration:create"
+    "db:migration:generate": "sequelize migration:create --ext cjs"
   },
   "dependencies": {
     "@hapi/boom": "^10.0.1",
