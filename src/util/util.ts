@@ -44,7 +44,7 @@ export async function registerHapiPlugins(server: Hapi.Server): Promise<void> {
             options: {
                 grouping: "tags",
                 //schemes: config.env === Environment.DEVELOPMENT ? ["http"] : ["https"],
-                basePath: "/adventure-buddy",
+                basePath: "/",
                 //documentationPath: `/${config.serviceName}/documentation`,
                 //jsonPath: `/${config.serviceName}/swagger.json`,
                 pathPrefixSize: 2,

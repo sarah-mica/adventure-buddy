@@ -68,6 +68,8 @@ export class TripManager {
             return null;
         }
 
+        console.log(`Trip with code ${code} updated successfully. Affected rows: ${affectedCount}`);
+
         return await this.tripRepo.getByCode(code, { transaction });
     }
 

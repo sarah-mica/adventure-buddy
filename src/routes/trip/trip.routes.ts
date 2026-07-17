@@ -1,18 +1,12 @@
 import { ServerRoute } from "@hapi/hapi";
-import Joi from "joi";
-import { StatusCodes } from "http-status-codes";
 import {
     addParticipantPayloadSchema,
     createTripPayloadSchema,
     dayParamsSchema,
     getTripByCodeParamsSchema,
     participantParamsSchema,
-    participantResponseSchema,
     stopParamsSchema,
-    stopResponseSchema,
-    tripResponseSchema,
     updateTripPayloadSchema,
-    dayResponseSchema,
 } from "./trip.responses.js";
 import { TripHandlers } from "./trip.handlers.js";
 
@@ -26,11 +20,6 @@ export const tripRoutes = (tripHandlers: TripHandlers): ServerRoute[] => [
             validate: {
                 payload: createTripPayloadSchema,
             },
-            response: {
-                status: {
-                    [StatusCodes.CREATED]: tripResponseSchema,
-                },
-            },
             cors: true,
         },
     },
@@ -42,11 +31,6 @@ export const tripRoutes = (tripHandlers: TripHandlers): ServerRoute[] => [
             tags: ["api"],
             validate: {
                 params: getTripByCodeParamsSchema,
-            },
-            response: {
-                status: {
-                    [StatusCodes.OK]: tripResponseSchema,
-                },
             },
             cors: true,
         },
@@ -61,11 +45,6 @@ export const tripRoutes = (tripHandlers: TripHandlers): ServerRoute[] => [
                 params: getTripByCodeParamsSchema,
                 payload: updateTripPayloadSchema,
             },
-            response: {
-                status: {
-                    [StatusCodes.OK]: tripResponseSchema,
-                },
-            },
             cors: true,
         },
     },
@@ -79,11 +58,6 @@ export const tripRoutes = (tripHandlers: TripHandlers): ServerRoute[] => [
                 params: getTripByCodeParamsSchema,
                 payload: addParticipantPayloadSchema,
             },
-            response: {
-                status: {
-                    [StatusCodes.CREATED]: participantResponseSchema,
-                },
-            },
             cors: true,
         },
     },
@@ -95,11 +69,6 @@ export const tripRoutes = (tripHandlers: TripHandlers): ServerRoute[] => [
             tags: ["api"],
             validate: {
                 params: participantParamsSchema,
-            },
-            response: {
-                status: {
-                    [StatusCodes.NO_CONTENT]: Joi.any(),
-                },
             },
             cors: true,
         },
@@ -113,11 +82,6 @@ export const tripRoutes = (tripHandlers: TripHandlers): ServerRoute[] => [
             validate: {
                 params: getTripByCodeParamsSchema,
             },
-            response: {
-                status: {
-                    [StatusCodes.CREATED]: dayResponseSchema,
-                },
-            },
             cors: true,
         },
     },
@@ -129,11 +93,6 @@ export const tripRoutes = (tripHandlers: TripHandlers): ServerRoute[] => [
             tags: ["api"],
             validate: {
                 params: getTripByCodeParamsSchema,
-            },
-            response: {
-                status: {
-                    [StatusCodes.CREATED]: dayResponseSchema,
-                },
             },
             cors: true,
         },
@@ -147,11 +106,6 @@ export const tripRoutes = (tripHandlers: TripHandlers): ServerRoute[] => [
             validate: {
                 params: dayParamsSchema,
             },
-            response: {
-                status: {
-                    [StatusCodes.NO_CONTENT]: Joi.any(),
-                },
-            },
             cors: true,
         },
     },
@@ -163,11 +117,6 @@ export const tripRoutes = (tripHandlers: TripHandlers): ServerRoute[] => [
             tags: ["api"],
             validate: {
                 params: dayParamsSchema,
-            },
-            response: {
-                status: {
-                    [StatusCodes.NO_CONTENT]: Joi.any(),
-                },
             },
             cors: true,
         },
@@ -181,11 +130,6 @@ export const tripRoutes = (tripHandlers: TripHandlers): ServerRoute[] => [
             validate: {
                 params: dayParamsSchema,
             },
-            response: {
-                status: {
-                    [StatusCodes.CREATED]: stopResponseSchema,
-                },
-            },
             cors: true,
         },
     },
@@ -198,11 +142,6 @@ export const tripRoutes = (tripHandlers: TripHandlers): ServerRoute[] => [
             validate: {
                 params: stopParamsSchema,
             },
-            response: {
-                status: {
-                    [StatusCodes.NO_CONTENT]: Joi.any(),
-                },
-            },
             cors: true,
         },
     },
@@ -214,11 +153,6 @@ export const tripRoutes = (tripHandlers: TripHandlers): ServerRoute[] => [
             tags: ["api"],
             validate: {
                 params: stopParamsSchema,
-            },
-            response: {
-                status: {
-                    [StatusCodes.NO_CONTENT]: Joi.any(),
-                },
             },
             cors: true,
         },

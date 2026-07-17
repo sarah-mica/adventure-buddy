@@ -85,7 +85,7 @@ const toTripResponse = (trip: { code: string; name: string; start_date: Date | s
     name: trip.name,
     start_date: formatOptionalDate(trip.start_date),
     end_date: formatOptionalDate(trip.end_date),
-    location: trip.location,
+    location: trip.location ?? null,
     participants: trip.participants ?? [],
     days: (trip.days ?? []).map((day) => formatDayResponse(day)),
 });
@@ -157,6 +157,7 @@ export class TripHandlers {
         const { tripCode } = request.params;
         const payload = request.payload ?? {};
         const { name, start_date, end_date, location } = payload;
+        console.log("updateTrip request", { tripCode, name, start_date, end_date, location });
 
         const updatedTrip = await this.tripManager.updateByCode(tripCode, {
             name,
@@ -169,7 +170,13 @@ export class TripHandlers {
             throw Boom.notFound("Trip not found");
         }
 
-        return h.response(toTripResponse(updatedTrip)).code(StatusCodes.OK);
+        try {
+            return h.response(toTripResponse(updatedTrip)).code(StatusCodes.OK);
+        } catch (error) {
+            console.log("Error formatting trip response", error);
+            throw Boom.internal("Error formatting trip response");
+        }
+
     }
 
     public async addParticipant(request: AddParticipantRequest, h: ResponseToolkit): Promise<ResponseObject> {
